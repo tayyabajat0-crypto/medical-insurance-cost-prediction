@@ -1,9 +1,20 @@
 import streamlit as st
-import pandas as pd
-import joblib
 
-model = joblib.load("model.pkl")
-columns = joblib.load("columns.pkl")
+# Coefficients exported from the trained Multiple Linear Regression model
+INTERCEPT = -11194.194349936239
+COEF = {
+    "age": 248.2107202247045,
+    "sex": 101.54205399029436,      # 1 = female
+    "bmi": 318.70144095235065,
+    "children": 533.0099887986984,
+    "smoker": 23077.7645928681,     # 1 = yes
+}
+REGION = {
+    "northeast": 0.0,
+    "northwest": -391.7614547836083,
+    "southeast": -838.9196157269689,
+    "southwest": -659.1397515529709,
+}
 
 st.title("Medical Insurance Cost Predictor")
 st.write("Enter your details to get an estimated yearly insurance cost.")
@@ -16,13 +27,14 @@ sex = st.selectbox("Gender", ["male", "female"])
 region = st.selectbox("Region", ["northeast", "northwest", "southeast", "southwest"])
 
 if st.button("Predict Cost"):
-    row = {c: 0 for c in columns}
-    row["age"] = age
-    row["bmi"] = bmi
-    row["children"] = children
-    row["smoker"] = 1 if smoker == "yes" else 0
-    row["sex"] = 1 if sex == "female" else 0
-    if "region_" + region in row:
-        row["region_" + region] = 1
-    pred = model.predict(pd.DataFrame([row])[columns])[0]
+    pred = (
+        INTERCEPT
+        + COEF["age"] * age
+        + COEF["bmi"] * bmi
+        + COEF["children"] * children
+        + (COEF["smoker"] if smoker == "yes" else 0)
+        + (COEF["sex"] if sex == "female" else 0)
+        + REGION[region]
+    )
     st.success(f"Estimated insurance cost: ${max(pred, 0):,.2f}")
+    st.caption("Educational estimate from a Linear Regression model, not a real insurance quote.")
