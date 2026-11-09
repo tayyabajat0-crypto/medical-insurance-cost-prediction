@@ -4,7 +4,7 @@
 Predict the yearly medical insurance charge of a person from their age, BMI, number of children, smoking status, gender and region.
 
 ## Dataset
-1,338 records, 7 columns (age, sex, bmi, children, smoker, region, charges). No missing values. One duplicate row was removed, leaving 1,337.
+1,338 records, 7 columns (age, sex, BMI, children, smoker, region, charges). No missing values. One duplicate row was removed, leaving 1,337.
 
 ## Preprocessing
 - Removed duplicates
@@ -30,14 +30,16 @@ Multiple Linear Regression (scikit-learn).
 - Gender and number of children have little impact
 
 ## Screenshots
-Add your images from the screenshots folder here.
+The interface and sample predictions can be seen in the live app linked below.
 
 ## Live App
-PASTE YOUR DEPLOYED LINK HERE
+https://medical-insurance-cost-prediction-b93gqpwmxezggd2qbrjsaw.streamlit.app
 
 ## How to Run
+```
 pip install -r requirements.txt
 streamlit run app.py
+```
 
 ## Limitations
 - A linear model cannot capture interactions (e.g. high BMI matters more for smokers)
