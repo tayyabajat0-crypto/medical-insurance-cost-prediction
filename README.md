@@ -35,6 +35,10 @@ The interface and sample predictions can be seen in the live app linked below.
 ## Live App
 https://medical-insurance-cost-prediction-b93gqpwmxezggd2qbrjsaw.streamlit.app
 
+<a href="https://alumni.saylaniit.com/launchpad" target="_blank" rel="noopener noreferrer">
+  <img src="https://alumni.saylaniit.com/assets/badge-featured.svg" alt="Featured on Saylani Launchpad" width="240" height="56" />
+</a>
+
 ## How to Run
 ```
 pip install -r requirements.txt
